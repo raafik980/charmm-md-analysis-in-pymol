@@ -6,8 +6,8 @@ from tqdm import tqdm  # Import tqdm for progress bar
 # Define a function to calculate RMSD for a single frame
 def calculate_rmsd(frame_number, object_1, reference_object):
     cmd.frame(frame_number)
-    cmd.align(object_1, reference_object, frame_number, 1)
-    return cmd.rms(object_1, reference_object, frame_number, 1)
+    #cmd.align(object_1, reference_object, frame_number, 1)
+    return cmd.rms_cur(object_1, reference_object, frame_number, 1)
 
 # Define the process_frame function outside of RMSD_vs_frame
 def process_frame(args):
@@ -46,7 +46,7 @@ def RMSD_vs_frame(object_1, stride=1, num_process=1):
 
     # Plot the data
     plt.figure()
-    plt.plot(x1, y1, label=object_1, color='royalblue', linewidth=2)
+    plt.plot(x1, y1, label=object_1, color='blue', linewidth=2)
     plt.xlabel('Frame', fontsize=12)
     plt.ylabel('Distance', fontsize=12)
     plt.title('Distance vs Frame', fontsize=16)
@@ -58,4 +58,4 @@ def RMSD_vs_frame(object_1, stride=1, num_process=1):
     
 
 # Usage: RMSD_vs_frame('object_name', stride=1, num_process=1)
-print("USAGE: RMSD_vs_frame('object_name', stride=5, num_process=4)")
+print("USAGE: RMSD_vs_frame('protein selection', stride=5, num_process=4)")
