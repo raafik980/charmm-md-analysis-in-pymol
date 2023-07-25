@@ -7,7 +7,7 @@ from tqdm import tqdm  # Import tqdm for progress bar
 def calculate_rmsd(frame_number, object_1, reference_object):
     cmd.frame(frame_number)
     #cmd.align(object_1, reference_object, frame_number, 1)
-    return cmd.rms_cur(object_1, reference_object, frame_number, 1)
+    return cmd.rms_cur(object_1, reference_object, frame_number, 0)
 
 # Define the process_frame function outside of RMSD_vs_frame
 def process_frame(args):
@@ -18,7 +18,7 @@ def RMSD_vs_frame(object_1, stride=1, num_process=1):
     # Initialize an empty list to store RMSDs
     RMSDs = []
     reference_object = 'ref'
-    cmd.create(reference_object, object_1, 1, 1)
+    cmd.create(reference_object, object_1, 1, 0)
     
     # Calculate total number of frames
     total_frames = cmd.count_states(object_1)
